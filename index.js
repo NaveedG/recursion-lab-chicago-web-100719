@@ -1,44 +1,50 @@
-function printString(string) {
-  console.log(string[0])
-  if (string.length > 1) {
-    printString(string.slice(1))
-  } else return true
-}
-
-function reverseString(string) {
-  if (string === '') {
-    return string
+function printString(str) {
+  console.log(str[0])
+  if (str.length <= 1) {
+    return true // base case
   } else {
-    return reverseString(string.slice(1)) + string[0]
+    printString(str.slice(1)) // recursive call
   }
 }
 
-function isPalindrome(string) {
-  if (string.length === 1) {
-    return true
-  } else if (string[0] === string[string.length - 1]) {
-    return isPalindrome(string.substring(1, string.length - 1))
-  } else return false
+function reverseString(str) {
+  if (str.length <= 1) {
+    return str // base case
+  } else {
+    return str[str.length - 1] + reverseString(str.slice(0, str.length - 1)) // recursive call
+  }
 }
 
-function addUpTo(arr, index) {
-  if (arr[0] === arr[index]) {
-    return arr[index]
+function isPalindrome(str) {
+  if (str.length <= 1) {
+    return true // base case
+  } else if (str[0] === str[str.length - 1]) {
+      return isPalindrome(str.slice(1, str.length - 1)) // recursive call
   } else {
-    return arr[index] + addUpTo(arr, --index)
+    return false
+  }
+}
+
+function addUpTo(arr, i) {
+  if (arr[0] === arr[i]) {
+    return arr[0] // base case
+  } else {
+    return arr[0] + addUpTo(arr.slice(1), --i) // recursive call
   }
 }
 
 function maxOf(arr) {
-  if (arr.length === 1) {
-    return arr[0]
+  if (arr.length <= 1) {
+    return arr[0] // base case
   } else {
-    return Math.max(arr.pop(), maxOf(arr))
+    return Math.max(arr[0], maxOf(arr.slice(1))) // recursive call
   }
 }
 
-function includesNumber(arr, element) {
-  if (arr.length > 0) {
-    return (arr[0] === element) ? true : includesNumber(arr.slice(1), element)
+function includesNumber(arr, x) {
+  if (arr[0] === x) {
+    return true // base case
+  } else if (arr.length > 0) {
+    return includesNumber(arr.slice(1), x) // recursive call
   } else return false
 }

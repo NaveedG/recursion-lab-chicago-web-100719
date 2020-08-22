@@ -20,9 +20,7 @@ function isPalindrome(str) {
     return true // base case
   } else if (str[0] === str[str.length - 1]) {
       return isPalindrome(str.slice(1, str.length - 1)) // recursive call
-  } else {
-    return false
-  }
+  } else return false
 }
 
 function addUpTo(arr, i) {
